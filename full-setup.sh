@@ -5,4 +5,4 @@
 # Script follows here:
 
 sudo sh ./basic-packages.sh
-sudo sh ./rtl8821ce-install-wifi.sh
+sudo sh ./wifi-setup.sh
