@@ -4,4 +4,4 @@
 
 - basic-packages.sh will install basic dependancies and packages.
 
-- rtl8821ce-install-wifi.sh will install and configure the rtl8821ce wifi driver.
+- wifi-setup.sh will install and configure the rtl8821ce wifi driver.
