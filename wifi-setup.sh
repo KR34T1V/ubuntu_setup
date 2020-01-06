@@ -13,7 +13,7 @@ echo "Packages to be installed: $INSTALL_PACKAGES"
 
 sudo add-apt-repository --yes $INSTALL_REPOS
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade --yes
 sudo apt install --yes $INSTALL_PACKAGES
 sudo apt autoremove --yes
 

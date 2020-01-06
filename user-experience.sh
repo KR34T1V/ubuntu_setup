@@ -3,12 +3,11 @@
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
 # Script follows here:
+# user-experience.sh
 
-KODI_REPO="ppa:team-xbmc/ppa"
+INSTALL_REPOS=""
 
-INSTALL_REPOS="$KODI_REPO"
-
-INSTALL_PACKAGES="software-properties-common kodi"
+INSTALL_PACKAGES="gnome-tweaks vlc"
 
 echo "Repositories to be installed: $INSTALL_REPOS"
 echo "Packages to be installed: $INSTALL_PACKAGES"
