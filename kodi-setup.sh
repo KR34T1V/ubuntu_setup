@@ -4,11 +4,11 @@
 # Copyright (c) GNU v3
 # Script follows here:
 
-UKUU_REPO="ppa:teejee2008/ppa"
+UKUU_REPO="ppa:team-xbmc/ppa"
 
 INSTALL_REPOS="$UKUU_REPO"
 
-INSTALL_PACKAGES="build-essential git curl"
+INSTALL_PACKAGES="software-properties-common kodi"
 
 echo "Repositories to be installed: $INSTALL_REPOS"
 echo "Packages to be installed: $INSTALL_PACKAGES"
@@ -20,3 +20,4 @@ sudo apt install --yes $INSTALL_PACKAGES
 sudo apt update
 sudo apt upgrade
 sudo apt autoremove --yes
+
