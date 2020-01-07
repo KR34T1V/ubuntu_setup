@@ -3,6 +3,8 @@
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
 # Script follows here:
+# wifi-setup.sh
+. $(dirname "$0")"/functions/req_reboot.sh"
 
 FOLDER="rtl8821ce"
 INSTALL_REPOS=""
@@ -26,6 +28,4 @@ sudo ./dkms-install.sh
 sudo sed -i "s/^GRUB_CMDLINE_LINUX_DEFAULT=\".*\"$/GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash pci=noaer\"/g" /etc/default/grub
 cd ..
 sudo rm -rf ./$FOLDER
-echo Rebooting...
-wait 50
-reboot
+req_reboot

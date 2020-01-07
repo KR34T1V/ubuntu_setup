@@ -3,24 +3,27 @@
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
 # Script follows here:
+# kodi-remove.sh
 . $(dirname "$0")"/functions/req_config_remove.sh"
-# Uninstall Kodi
 
+KODI_REPO="ppa:team-xbmc/ppa"
 
-INSTALL_REPOS=""
+REMOVE_REPOS="$KODI_REPO"
 
-INSTALL_PACKAGES=""
+REMOVE_PACKAGES="kodi"
 
-echo "Repositories to be installed: $INSTALL_REPOS"
-echo "Packages to be installed: $INSTALL_PACKAGES"
+echo "Repositories to be removed: $REMOVE_REPOS"
+echo "Packages to be removed: $REMOVE_PACKAGES"
 
 sudo apt update
-sudo apt remove kodi*
-sudo apt purge kodi*
+sudo add-apt-repository --remove --yes $REMOVE_REPOS
+sudo apt remove --yes $REMOVE_PACKAGES
+sudo apt purge --yes $REMOVE_PACKAGES
 req_config_remove
 if [ $? = 1 ]
 then
 	sudo rm -r ~/.kodi/
 fi
+sudo apt update
 sudo apt autoremove --yes
 

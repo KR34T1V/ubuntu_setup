@@ -2,14 +2,11 @@
 
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
+# bluetooth-setup.sh
 # Script follows here:
-# user-experience.sh
 
-BLUETOOTH="ppa:bluetooth/bluez"
-
-INSTALL_REPOS="$BLUETOOTH"
-
-INSTALL_PACKAGES="gnome-tweaks vlc"
+INSTALL_REPOS=""
+INSTALL_PACKAGES="pulseaudio pulseaudio-utils pavucontrol pulseaudio-module-bluetooth"
 
 echo "Repositories to be installed: $INSTALL_REPOS"
 echo "Packages to be installed: $INSTALL_PACKAGES"
@@ -18,7 +15,10 @@ sudo add-apt-repository --yes $INSTALL_REPOS
 sudo apt update
 sudo apt upgrade --yes
 sudo apt install --yes $INSTALL_PACKAGES
-sudo apt update
-sudo apt upgrade --yes
 sudo apt autoremove --yes
 
+# Configure Bluetooth Sound
+echo "# This section contains general options
+    [General]
+    Enable=Source,Sink,Media,Socket" > /etc/bluetooth/audio.conf
+sudo service bluetooth restart
