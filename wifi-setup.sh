@@ -7,25 +7,78 @@
 . $(dirname "$0")"/functions/req_reboot.sh"
 
 FOLDER="rtl8821ce"
-INSTALL_REPOS=""
+
+REPO1=""
+
+INSTALL_REPOS="$REPO1"
+
 INSTALL_PACKAGES="linux-headers-$(uname -r) build-essential dkms"
 
-echo "Repositories to be installed: $INSTALL_REPOS"
-echo "Packages to be installed: $INSTALL_PACKAGES"
+install () {
+	echo "Repositories to be installed: $INSTALL_REPOS"
+	echo "Packages to be installed: $INSTALL_PACKAGES"
 
-sudo add-apt-repository --yes $INSTALL_REPOS
-sudo apt update
-sudo apt upgrade --yes
-sudo apt install --yes $INSTALL_PACKAGES
-sudo apt autoremove --yes
+	sudo add-apt-repository --yes $INSTALL_REPOS
+	sudo apt update
+	sudo apt upgrade --yes
+	sudo apt install --yes $INSTALL_PACKAGES
+	sudo apt update
+	sudo apt upgrade --yes
+	sudo apt autoremove --yes
+	
+	#install rtl8821ce wifi driver
 
-#install rtl8821ce wifi driver
+	git clone https://github.com/M4DM0NK3Y/rtl8821ce.git $FOLDER
+	cd $FOLDER
+	sudo make install
+	sudo ./dkms-install.sh
+	sudo sed -i "s/^GRUB_CMDLINE_LINUX_DEFAULT=\".*\"$/GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash pci=noaer\"/g" /etc/default/grub
+	cd ..
+	sudo rm -rf ./$FOLDER
+	echo "\nSetup Complete"
+	req_reboot
+}
 
-git clone https://github.com/M4DM0NK3Y/rtl8821ce.git $FOLDER
-cd $FOLDER
-sudo make install
-sudo ./dkms-install.sh
-sudo sed -i "s/^GRUB_CMDLINE_LINUX_DEFAULT=\".*\"$/GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash pci=noaer\"/g" /etc/default/grub
-cd ..
-sudo rm -rf ./$FOLDER
-req_reboot
+remove() {
+	REMOVE_REPOS="$INSTALL_REPOS"
+
+	REMOVE_PACKAGES="$INSTALL_PACKAGES"
+
+	echo "Repositories to be removed: $REMOVE_REPOS"
+	echo "Packages to be removed: $REMOVE_PACKAGES"
+
+	sudo apt update
+	sudo add-apt-repository --remove --yes $REMOVE_REPOS
+	sudo apt remove --yes $REMOVE_PACKAGES
+	sudo apt purge --yes $REMOVE_PACKAGES
+	sudo apt update
+        sudo apt autoremove --yes
+	echo "\nSetup Complete"
+
+}
+
+main () {
+	INSTALL="install"
+	REMOVE="remove"
+
+	if [ $1 ]
+	then
+		ARG1=$1	
+
+		if [ $ARG1 = $INSTALL ]
+		then
+			install
+		elif [ $ARG1 = $REMOVE ]
+		then
+			remove
+		else
+			echo "Argument Required: \"$INSTALL\" | \"$REMOVE\""
+			return 0
+		fi
+	else
+		echo "Argument Required: \"$INSTALL\" | \"$REMOVE\""
+	fi
+		return 0
+}
+
+main $1 $2 $3

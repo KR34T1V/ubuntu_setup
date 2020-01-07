@@ -3,11 +3,13 @@
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
 # Script follows here:
-# bluetooth-setup.sh
+# template.sh
 
-INSTALL_REPOS=""
+REPO1=""
 
-INSTALL_PACKAGES="pulseaudio pulseaudio-utils pavucontrol pulseaudio-module-bluetooth"
+INSTALL_REPOS="$REPO1"
+
+INSTALL_PACKAGES=""
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"
@@ -20,12 +22,6 @@ install () {
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt autoremove --yes
-	# Configure Bluetooth Sound
-	echo "# This section contains general options
-    [General]
-    Enable=Source,Sink,Media,Socket" > /etc/bluetooth/audio.conf
-	sudo service bluetooth restart
-
 	echo "\nSetup Complete"
 }
 
