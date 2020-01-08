@@ -3,13 +3,13 @@
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
 # Script follows here:
-# user-experience.sh
+# telegram-setup.sh
 
-UKUU_REPO="ppa:teejee2008/ppa"
+REPO1="ppa:atareao/telegram"
 
-INSTALL_REPOS="$UKUU_REPO"
+INSTALL_REPOS="$REPO1"
 
-INSTALL_PACKAGES="vim vlc ukuu terminator telegram"
+INSTALL_PACKAGES="telegram"
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"
