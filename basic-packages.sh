@@ -7,7 +7,7 @@
 
 INSTALL_REPOS=""
 
-INSTALL_PACKAGES="build-essential git curl apt-transport-https wget"
+INSTALL_PACKAGES="build-essential git curl tar apt-transport-https wget"
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"
