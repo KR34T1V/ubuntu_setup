@@ -9,7 +9,7 @@ UKUU_REPO="ppa:teejee2008/ppa"
 
 INSTALL_REPOS="$UKUU_REPO"
 
-INSTALL_PACKAGES="vim vlc ukuu terminator telegram"
+INSTALL_PACKAGES="vim vlc ukuu terminator telegram firefox"
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"
