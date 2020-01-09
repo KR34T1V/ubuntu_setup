@@ -9,7 +9,7 @@ REPO1=""
 
 INSTALL_REPOS="$REPO1"
 
-INSTALL_PACKAGES="php7.0"
+INSTALL_PACKAGES="php php-curl"
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"
