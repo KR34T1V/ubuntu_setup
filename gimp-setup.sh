@@ -3,13 +3,13 @@
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
 # Script follows here:
-# user-experience.sh
+# gimp-setup.sh
 
-UKUU_REPO="ppa:teejee2008/ppa"
+GIMP_REPO="ppa:otto-kesselgulasch/gimp"
 
-INSTALL_REPOS="$UKUU_REPO"
+INSTALL_REPOS="$GIMP_REPO"
 
-INSTALL_PACKAGES="vim vlc ukuu terminator telegram"
+INSTALL_PACKAGES="gimp"
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"

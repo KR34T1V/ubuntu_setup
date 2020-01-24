@@ -3,13 +3,13 @@
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
 # Script follows here:
-# user-experience.sh
+# template.sh
 
-UKUU_REPO="ppa:teejee2008/ppa"
+REPO1=""
 
-INSTALL_REPOS="$UKUU_REPO"
+INSTALL_REPOS="$REPO1"
 
-INSTALL_PACKAGES="vim vlc ukuu terminator telegram"
+INSTALL_PACKAGES="libxss1 libappindicator1 libindicator7"
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"
@@ -19,9 +19,13 @@ install () {
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt install --yes $INSTALL_PACKAGES
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo dpkg -i google-chrome*.deb
+	sudo apt-get install -f
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt autoremove --yes
+	sudo rm google-chrome*.deb
 	echo "\nSetup Complete"
 }
 

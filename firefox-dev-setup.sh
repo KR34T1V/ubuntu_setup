@@ -3,13 +3,13 @@
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
 # Script follows here:
-# user-experience.sh
+# firefox-dev-setup.sh
 
-UKUU_REPO="ppa:teejee2008/ppa"
+FIREFOX_DEV_REPO="ppa:ubuntu-mozilla-daily/firefox-aurora"
 
-INSTALL_REPOS="$UKUU_REPO"
+INSTALL_REPOS="$FIREFOX_DEV_REPO"
 
-INSTALL_PACKAGES="vim vlc ukuu terminator telegram"
+INSTALL_PACKAGES="firefox"
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"
