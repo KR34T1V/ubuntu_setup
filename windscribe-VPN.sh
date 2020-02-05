@@ -3,18 +3,19 @@
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
 # Script follows here:
-# user-experience.sh
+# template.sh
 
-UKUU_REPO="ppa:teejee2008/ppa"
+WINDSCRIBE_REPO="https://repo.windscribe.com/ubuntu"
 
-INSTALL_REPOS="$UKUU_REPO"
+INSTALL_REPOS="$WINDSCRIBE_REPO"
 
-INSTALL_PACKAGES="vim vlc ukuu terminator telegram simple-scan"
+INSTALL_PACKAGES="windscribe-cli"
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"
 	echo "Packages to be installed: $INSTALL_PACKAGES"
 
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key FDC247B7
 	sudo add-apt-repository --yes $INSTALL_REPOS
 	sudo apt update
 	sudo apt upgrade --yes
@@ -22,7 +23,9 @@ install () {
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt autoremove --yes
-	echo "\nSetup Complete"
+	echo "\nSetup Completei"
+	windscribe login
+	echo "To get started: windscribe login | windscribe connect"
 }
 
 remove() {
