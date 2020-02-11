@@ -6,6 +6,7 @@
 # extlinux-setup.sh
 #http://shallowsky.com/linux/extlinux.html
 
+. $(dirname "$0")"/functions/req_reboot.sh"
 REPO1=""
 
 INSTALL_REPOS="$REPO1"
@@ -29,6 +30,7 @@ install () {
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt autoremove --yes
+	req_reboot
 	echo "\nSetup Complete"
 }
 
