@@ -3,32 +3,32 @@
 # Author : Cornelis Terblanche
 # Copyright (c) GNU v3
 # Script follows here:
-# samsung-printer-drivers.sh
+# extlinux-setup.sh
+#http://shallowsky.com/linux/extlinux.html
 
-REPO1="http://www.bchemnet.com/suldr/ debian extra"
+REPO1=""
 
 INSTALL_REPOS="$REPO1"
 
-INSTALL_PACKAGES="samsungmfp-data samsungmfp-driver samsungmfp-network samsungmfp-scanner samsungmfp-configurator-data samsungmfp-configurator-qt4 libsane-extras"
+INSTALL_PACKAGES="extlinux syslinux-common"
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"
 	echo "Packages to be installed: $INSTALL_PACKAGES"
 
 	sudo add-apt-repository --yes $INSTALL_REPOS
-	sudo wget -O – http://www.bchemnet.com/suldr/suldr.gpg | sudo apt-key add –
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt install --yes $INSTALL_PACKAGES
+	sudo extlinux --install /boot/extlinux
+	sudo fdisk -l /dev/sda
+	sudo dd if=/usr/lib/extlinux/mbr.bin of=/dev/sda bs=440 count=1
+	sudo cp /usr/lib/syslinux/*menu* /boot/extlinux
+	sudo cp /usr/lib/syslinux/chain.c32 /boot/extlinux
+	sudo echo "ui vesamenu.c32" >> /boot/extlinux.conf 
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt autoremove --yes
-	sudo echo "# Samsung SCX-3400
-usb 0x04e8 0x344f" >> /etc/sane.d/xerox_mfp.conf
-
-	sudo echo "# Samsung SCX-3400
-ATTRS{idVendor}=="04e8", ATTRS{idProduct}=="344f", ENV{libsane_matched}="yes"" >> /lib/udev/rules.d/40-libsane.rules
-	sudo sane-find-scanner
 	echo "\nSetup Complete"
 }
 
@@ -46,10 +46,6 @@ remove() {
 	sudo apt purge --yes $REMOVE_PACKAGES
 	sudo apt update
         sudo apt autoremove --yes
-	echo "# Samsung SCX-3400
-usb 0x04e8 0x344f" >> ~/pie.txt
-	echo "# Samsung SCX-3400
-ATTRS{idVendor}=="04e8", ATTRS{idProduct}=="344f", ENV{libsane_matched}="yes"" >> ~/pie.txt
 	echo "\nSetup Complete"
 
 }
