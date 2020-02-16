@@ -19,8 +19,11 @@ install () {
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt install --yes $INSTALL_PACKAGES
+	#Additional Preferences
 	sudo git config --global user.name "Cornelis Terblanche"
 	sudo git config --global user.email "1997corry@gmail.com"
+	sudo apt remove firefox
+	sudo apt remove rhythmbox
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt autoremove --yes
