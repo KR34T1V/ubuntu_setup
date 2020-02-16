@@ -5,7 +5,7 @@
 # Script follows here:
 # samsung-printer-drivers.sh
 
-REPO1="http://www.bchemnet.com/suldr/ debian extra"
+REPO1=""
 
 INSTALL_REPOS="$REPO1"
 

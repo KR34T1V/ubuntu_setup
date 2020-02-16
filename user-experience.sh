@@ -9,7 +9,7 @@ UKUU_REPO="ppa:teejee2008/ppa"
 
 INSTALL_REPOS="$UKUU_REPO"
 
-INSTALL_PACKAGES="vim vlc ukuu terminator telegram simple-scan"
+INSTALL_PACKAGES="vim vlc git gnome-tweaks wget ukuu terminator simple-scan"
 
 install () {
 	echo "Repositories to be installed: $INSTALL_REPOS"
@@ -19,6 +19,8 @@ install () {
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt install --yes $INSTALL_PACKAGES
+	sudo git config --global user.name "Cornelis Terblanche"
+	sudo git config --global user.email "1997corry@gmail.com"
 	sudo apt update
 	sudo apt upgrade --yes
 	sudo apt autoremove --yes
